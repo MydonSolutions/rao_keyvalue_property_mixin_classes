@@ -10,7 +10,10 @@ class HpdaqMeerkatProperties(HpdaqProperties):
     )
 
     nof_polarizations: int = property(
-        fget=lambda self: self.__get_item__("NPOL"),
+        fget=lambda self: (
+            2 if self.__get_item__("NPOL") == 4
+            else self.__get_item__("NPOL")
+        ),
         fset=lambda self, value: self.set("NPOL", value),
         doc="""Number of polarizations in the data of the block.
             Critical to rawspec processing a file.
