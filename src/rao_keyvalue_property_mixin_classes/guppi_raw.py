@@ -1,3 +1,5 @@
+from typing import Tuple
+
 class GuppiRawProperties:
     """
     GUPPI RAW properties
@@ -8,6 +10,25 @@ class GuppiRawProperties:
         fset=lambda self, value: self.set("BLOCSIZE", value),
         doc="""Number of bytes in the data of the block.
             Critical to reading from a file.
+        """
+    )
+
+    blockshape: Tuple[int, int, int, int] = property(
+        fget=lambda self: (
+            self.nof_antennas,
+            self.observed_nof_channels//self.nof_antennas,
+            self.blocksize//(
+                self.observed_nof_channels
+                * self.nof_polarizations
+                * 2
+                * self.nof_bits
+            ),
+            self.nof_polarizations
+        ),
+        fset=None,
+        doc="""The 4 dimensional shape of the data within the block.
+        Assumes complex data, of order:
+        [slowest=Aspects, Channels, Spectra, Polarization=fastest]
         """
     )
 
