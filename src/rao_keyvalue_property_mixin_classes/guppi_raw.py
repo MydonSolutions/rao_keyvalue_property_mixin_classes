@@ -34,7 +34,7 @@ class GuppiRawProperties:
     )
 
     directio: bool = property(
-        fget=lambda self: self.get("DIRECTIO", default=False),
+        fget=lambda self: self.get("DIRECTIO", False),
         fset=lambda self, value: self.set("DIRECTIO", value),
         doc="""Whether or not the header is padded with bytes to align the
             start of the data of the block to a multiple of 512.
@@ -100,7 +100,7 @@ class GuppiRawProperties:
     )
 
     nof_antennas: int = property(
-        fget=lambda self: self.get("NANTS", default=1),
+        fget=lambda self: self.get("NANTS", 1),
         fset=lambda self, value: self.set("NANTS", value),
         doc="""The factor of antenna in OBSNCHAN.
             Used by rawspec when processing a file.
@@ -108,7 +108,7 @@ class GuppiRawProperties:
     )
 
     rightascension_string: str = property(
-        fget=lambda self: self.get("RA_STR", default="0.0"),
+        fget=lambda self: self.get("RA_STR", "0.0"),
         fset=lambda self, value: self.set("RA_STR", value),
         doc="""The right-ascension coordinate the data of the block.
             Used by rawspec when processing a file.
@@ -116,7 +116,7 @@ class GuppiRawProperties:
     )
 
     declination_string: str = property(
-        fget=lambda self: self.get("DEC_STR", default="0.0"),
+        fget=lambda self: self.get("DEC_STR", "0.0"),
         fset=lambda self, value: self.set("DEC_STR", value),
         doc="""The declination coordinate the data of the block.
             Used by rawspec when processing a file.
@@ -124,7 +124,7 @@ class GuppiRawProperties:
     )
 
     stt_mjd_day: int = property(
-        fget=lambda self: self.get("STT_IMJD", default=51545),
+        fget=lambda self: self.get("STT_IMJD", 51545),
         fset=lambda self, value: self.set("STT_IMJD", value),
         doc="""The MJD integer day of the first sample of the data of the block.
             Used by rawspec when processing a file.
@@ -132,7 +132,7 @@ class GuppiRawProperties:
     )
 
     stt_mjd_seconds: float = property(
-        fget=lambda self: self.get("STT_SMJD", default=0),
+        fget=lambda self: self.get("STT_SMJD", 0),
         fset=lambda self, value: self.set("STT_SMJD", value),
         doc="""The day-seconds of the first sample of the data of the block.
             Used by rawspec when processing a file.
@@ -140,7 +140,7 @@ class GuppiRawProperties:
     )
 
     source_name: str = property(
-        fget=lambda self: self.get("SRC_NAME", default="Unknown"),
+        fget=lambda self: self.get("SRC_NAME", "Unknown"),
         fset=lambda self, value: self.set("SRC_NAME", value),
         doc="""The observed target of the data of the block.
             Used by rawspec when processing a file.
@@ -148,7 +148,7 @@ class GuppiRawProperties:
     )
 
     telescope: str = property(
-        fget=lambda self: self.get("TELESCOP", default="Unknown"),
+        fget=lambda self: self.get("TELESCOP", "Unknown"),
         fset=lambda self, value: self.set("TELESCOP", value),
         doc="""The telescope name or code from which the block was produced.
             Used by rawspec when processing a file.

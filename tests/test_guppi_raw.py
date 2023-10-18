@@ -4,20 +4,18 @@ from rao_keyvalue_property_mixin_classes.guppi_raw import GuppiRawProperties
 
 
 class GuppiRawHeader(dict, GuppiRawProperties):
-    def get(self, key, default=None):
-        return super().get(key, default)
+    pass
 
 
 class TestGuppiRaw(unittest.TestCase):
     def test_blockshape(self):
-        grh = GuppiRawHeader()
-        grh.update({
-            "NANTS": 16,
-            "OBSNCHAN": 16*32,
-            "NPOL": 2,
-            "NBITS": 8,
-            "BLOCSIZE": 16*32*1024*2*2*8//8
-        })
+        grh = GuppiRawHeader(
+            NANTS=16,
+            OBSNCHAN=16*32,
+            NPOL=2,
+            NBITS=8,
+            BLOCSIZE=16*32*1024*2*2*8//8
+        )
 
         blockshape = grh.blockshape
         assert blockshape[0] == grh["NANTS"]

@@ -2,6 +2,12 @@ from .hpdaq import HpdaqProperties
 
 
 class HpdaqMeerkatProperties(HpdaqProperties):
+    telescope: str = property(
+        fget=lambda self=None: "MeerKAT",
+        fset=None,
+        doc="""The telescope name or code referencing the MeerKAT. Static, read-only."""
+    )
+
     channel_bandwidth: float = property(
         fget=lambda self: self.__getitem__(
             "CHAN_BW"

@@ -11,13 +11,19 @@ class HpdaqAtaDatatype(str, Enum):
 
 
 class HpdaqAtaProperties(HpdaqProperties):
+    telescope: str = property(
+        fget=lambda self=None: "ATA",
+        fset=None,
+        doc="""The telescope name or code referencing the ATA. Static, read-only."""
+    )
+
     observation_stem: str = property(
         fget=lambda self: self.__getitem__("OBSSTEM"),
         fset=None
     )
 
     observation_stempath: str = property(
-        getter=lambda self: os.path.join(
+        fget=lambda self: os.path.join(
             self.observation_output_directorypath,
             self.observation_stem,
         ),
@@ -42,7 +48,7 @@ class HpdaqAtaProperties(HpdaqProperties):
     channel_bandwidth: float = property(
         fget=lambda self: self.get(
             "CHAN_BW",
-            default=1.0/self.channel_timespan
+            1.0/self.channel_timespan
         ),
         fset=lambda self, value: self.set("CHAN_BW", value),
         doc="""Bandwidth of a channel.

@@ -1,5 +1,16 @@
 # Conventions
 
+## Expected External Mixin Methods
+
+The expected methods externalised to the adjacent mixins of the final implementation class follow the built-in `dict` class:
+
+- `self.get(key[, default])`
+  - the second positional argument is the fallback value in lieu of a value for the key.
+- `self.__getitem__(key)`
+  - raises KeyError if the key is not populated 
+- `self.set(key, value)`
+- `self.__setitem__(key, value)`
+
 ## Acronym choice
 
 Get as specific as possible as the classes represent a point in the heiarchy

@@ -37,7 +37,7 @@ class HpdaqProperties(GuppiRawProperties):
         """
     )
     observation_output_directorypath: str = property(
-        getter=lambda self: os.path.join(
+        fget=lambda self: os.path.join(
             self.data_directory,
             self.project_id,
             self.backend
