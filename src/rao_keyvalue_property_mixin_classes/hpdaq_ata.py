@@ -12,7 +12,7 @@ class HpdaqAtaDatatype(str, Enum):
 
 class HpdaqAtaProperties(HpdaqProperties):
     observation_stem: str = property(
-        fget=lambda self: self.__get_item__("OBSSTEM"),
+        fget=lambda self: self.__getitem__("OBSSTEM"),
         fset=None
     )
 

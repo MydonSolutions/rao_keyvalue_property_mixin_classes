@@ -1,12 +1,13 @@
 from typing import Tuple
 
+
 class GuppiRawProperties:
     """
     GUPPI RAW properties
     """
 
     blocksize: int = property(
-        fget=lambda self: self.__get_item__("BLOCSIZE"),
+        fget=lambda self: self.__getitem__("BLOCSIZE"),
         fset=lambda self, value: self.set("BLOCSIZE", value),
         doc="""Number of bytes in the data of the block.
             Critical to reading from a file.
@@ -17,7 +18,7 @@ class GuppiRawProperties:
         fget=lambda self: (
             self.nof_antennas,
             self.observed_nof_channels//self.nof_antennas,
-            self.blocksize//(
+            self.blocksize*8//(
                 self.observed_nof_channels
                 * self.nof_polarizations
                 * 2
@@ -43,7 +44,7 @@ class GuppiRawProperties:
     )
 
     observed_nof_channels: int = property(
-        fget=lambda self: self.__get_item__("OBSNCHAN"),
+        fget=lambda self: self.__getitem__("OBSNCHAN"),
         fset=lambda self, value: self.set("OBSNCHAN", value),
         doc="""Number of channels in the data of the block.
             Critical to rawspec processing a file.
@@ -51,7 +52,7 @@ class GuppiRawProperties:
     )
 
     nof_polarizations: int = property(
-        fget=lambda self: self.__get_item__("NPOL"),
+        fget=lambda self: self.__getitem__("NPOL"),
         fset=lambda self, value: self.set("NPOL", value),
         doc="""Number of polarizations in the data of the block.
             Critical to rawspec processing a file.
@@ -67,7 +68,7 @@ class GuppiRawProperties:
     )
 
     observed_frequency: float = property(
-        fget=lambda self: self.__get_item__("OBSFREQ"),
+        fget=lambda self: self.__getitem__("OBSFREQ"),
         fset=lambda self, value: self.set("OBSFREQ", value),
         doc="""The center frequency of the data of the block.
             Critical to rawspec processing a file.
@@ -75,7 +76,7 @@ class GuppiRawProperties:
     )
 
     observed_bandwidth: float = property(
-        fget=lambda self: self.__get_item__("OBSBW"),
+        fget=lambda self: self.__getitem__("OBSBW"),
         fset=lambda self, value: self.set("OBSBW", value),
         doc="""The bandwidth covered by the data of the block.
             Critical to rawspec processing a file.
@@ -83,7 +84,7 @@ class GuppiRawProperties:
     )
 
     channel_timespan: int = property(
-        fget=lambda self: self.__get_item__("TBIN"),
+        fget=lambda self: self.__getitem__("TBIN"),
         fset=lambda self, value: self.set("TBIN", value),
         doc="""Time span of each channel in the data of the block.
             Critical to rawspec processing a file.
@@ -91,7 +92,7 @@ class GuppiRawProperties:
     )
 
     packet_index: int = property(
-        fget=lambda self: self.__get_item__("PKTIDX"),
+        fget=lambda self: self.__getitem__("PKTIDX"),
         fset=lambda self, value: self.set("PKTIDX", value),
         doc="""The first packet-index of the data of the block.
             Critical to rawspec processing a file.

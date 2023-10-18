@@ -3,7 +3,7 @@ from .hpdaq import HpdaqProperties
 
 class HpdaqMeerkatProperties(HpdaqProperties):
     channel_bandwidth: float = property(
-        fget=lambda self: self.__get_item__(
+        fget=lambda self: self.__getitem__(
             "CHAN_BW"
         ),
         fset=lambda self, value: self.set("CHAN_BW", value)
@@ -11,8 +11,8 @@ class HpdaqMeerkatProperties(HpdaqProperties):
 
     nof_polarizations: int = property(
         fget=lambda self: (
-            2 if self.__get_item__("NPOL") == 4
-            else self.__get_item__("NPOL")
+            2 if self.__getitem__("NPOL") == 4
+            else self.__getitem__("NPOL")
         ),
         fset=lambda self, value: self.set("NPOL", value),
         doc="""Number of polarizations in the data of the block.

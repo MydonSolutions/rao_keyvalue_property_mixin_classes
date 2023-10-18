@@ -15,7 +15,7 @@ class HpdaqProperties(GuppiRawProperties):
     """
 
     data_directory: str = property(
-        fget=lambda self: self.__get_item__("DATADIR"),
+        fget=lambda self: self.__getitem__("DATADIR"),
         fset=None,
         doc="""Initial directory in the output path of the hashpipe recorded product.
         """
@@ -46,21 +46,21 @@ class HpdaqProperties(GuppiRawProperties):
     )
 
     start_packet_index: int = property(
-        fget=lambda self: self.__get_item__("PKTSTART"),
+        fget=lambda self: self.__getitem__("PKTSTART"),
         fset=lambda self, value: self.set("PKTSTART", value),
         doc="""The first packet-index from which to pass through the pipeline.
         """
     )
 
     stop_packet_index: int = property(
-        fget=lambda self: self.__get_item__("PKTSTOP"),
+        fget=lambda self: self.__getitem__("PKTSTOP"),
         fset=lambda self, value: self.set("PKTSTOP", value),
         doc="""The last packet-index from which to pass through the pipeline.
         """
     )
 
     packet_index_per_block: int = property(
-        fget=lambda self: self.__get_item__("PIPERBLK"),
+        fget=lambda self: self.__getitem__("PIPERBLK"),
         fset=lambda self, value: self.set("PIPERBLK", value),
         doc="""The packet-index span of a block.
         """
