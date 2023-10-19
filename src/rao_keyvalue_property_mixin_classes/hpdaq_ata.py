@@ -12,9 +12,9 @@ class HpdaqAtaDatatype(str, Enum):
 
 class HpdaqAtaProperties(HpdaqProperties):
     telescope: str = property(
-        fget=lambda self=None: "ATA",
-        fset=None,
-        doc="""The telescope name or code referencing the ATA. Static, read-only."""
+        fget=lambda self={}: self.get("TELESCOP", "ATA"),
+        fset=lambda self, value=None: self.__setitem__("TELESCOP", "ATA"),
+        doc="""The telescope name or code referencing the ATA. Static."""
     )
 
     observation_stem: str = property(
@@ -32,7 +32,7 @@ class HpdaqAtaProperties(HpdaqProperties):
 
     nof_beams: int = property(
         fget=lambda self: self.get("NBEAM", 0),
-        fset=lambda self, value: self.set("NBEAM", value)
+        fset=lambda self, value: self.__setitem__("NBEAM", value)
     )
 
     nof_channels: int = property(
@@ -40,7 +40,7 @@ class HpdaqAtaProperties(HpdaqProperties):
             "NCHAN",
             self.observed_nof_channels//self.nof_antennas
         ),
-        fset=lambda self, value: self.set("NCHAN", value),
+        fset=lambda self, value: self.__setitem__("NCHAN", value),
         doc="""Number of channels per aspect: `OBSNCHAN/NANTS`.
         """
     )
@@ -50,7 +50,7 @@ class HpdaqAtaProperties(HpdaqProperties):
             "CHAN_BW",
             1.0/self.channel_timespan
         ),
-        fset=lambda self, value: self.set("CHAN_BW", value),
+        fset=lambda self, value: self.__setitem__("CHAN_BW", value),
         doc="""Bandwidth of a channel.
         """
     )
@@ -62,7 +62,7 @@ class HpdaqAtaProperties(HpdaqProperties):
 
     observation_id: str = property(
         fget=lambda self: self.get("OBSID"),
-        fset=lambda self, value: self.set("OBSID", value)
+        fset=lambda self, value: self.__setitem__("OBSID", value)
     )
 
     antenna_names: List[str] = property(
@@ -71,7 +71,7 @@ class HpdaqAtaProperties(HpdaqProperties):
             self
         ),
         fset=lambda self, value: [
-            self.set(key, value)
+            self.__setitem__(key, value)
             for key, value in HpdaqAtaProperties._generate_antennaCsvEntries(
                 "ANTNMS",
                 self,
@@ -86,7 +86,7 @@ class HpdaqAtaProperties(HpdaqProperties):
             self
         ),
         fset=lambda self, value: [
-            self.set(key, value)
+            self.__setitem__(key, value)
             for key, value in HpdaqAtaProperties._generate_antennaCsvEntries(
                 "ANTFLG",
                 self,

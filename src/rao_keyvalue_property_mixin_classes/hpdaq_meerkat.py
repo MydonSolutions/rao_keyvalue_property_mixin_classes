@@ -3,16 +3,16 @@ from .hpdaq import HpdaqProperties
 
 class HpdaqMeerkatProperties(HpdaqProperties):
     telescope: str = property(
-        fget=lambda self=None: "MeerKAT",
-        fset=None,
-        doc="""The telescope name or code referencing the MeerKAT. Static, read-only."""
+        fget=lambda self={}: self.get("TELESCOP", "MeerKAT"),
+        fset=lambda self, value=None: self.__setitem__("TELESCOP", "MeerKAT"),
+        doc="""The telescope name or code referencing the MeerKAT. Static."""
     )
 
     channel_bandwidth: float = property(
         fget=lambda self: self.__getitem__(
             "CHAN_BW"
         ),
-        fset=lambda self, value: self.set("CHAN_BW", value)
+        fset=lambda self, value: self.__setitem__("CHAN_BW", value)
     )
 
     nof_polarizations: int = property(
@@ -20,7 +20,7 @@ class HpdaqMeerkatProperties(HpdaqProperties):
             2 if self.__getitem__("NPOL") == 4
             else self.__getitem__("NPOL")
         ),
-        fset=lambda self, value: self.set("NPOL", value),
+        fset=lambda self, value: self.__setitem__("NPOL", value),
         doc="""Number of polarizations in the data of the block.
             Critical to rawspec processing a file.
 

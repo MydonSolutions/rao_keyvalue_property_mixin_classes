@@ -23,7 +23,7 @@ class HpdaqProperties(GuppiRawProperties):
 
     project_id: str = property(
         fget=lambda self: self.get("PROJID", ".")[0:23],
-        fset=lambda self, value: self.set("PROJID", value),
+        fset=lambda self, value: self.__setitem__("PROJID", value),
         doc="""Subdirectory in the output path of the hashpipe recorded product.
         The value is truncated to 24 characters when used.
         """
@@ -31,7 +31,7 @@ class HpdaqProperties(GuppiRawProperties):
 
     backend: str = property(
         fget=lambda self: self.get("BACKEND", ".")[0:23],
-        fset=lambda self, value: self.set("BACKEND", value),
+        fset=lambda self, value: self.__setitem__("BACKEND", value),
         doc="""Subdirectory in the output path of the hashpipe recorded product.
         The value is truncated to 24 characters when used.
         """
@@ -47,21 +47,21 @@ class HpdaqProperties(GuppiRawProperties):
 
     start_packet_index: int = property(
         fget=lambda self: self.__getitem__("PKTSTART"),
-        fset=lambda self, value: self.set("PKTSTART", value),
+        fset=lambda self, value: self.__setitem__("PKTSTART", value),
         doc="""The first packet-index from which to pass through the pipeline.
         """
     )
 
     stop_packet_index: int = property(
         fget=lambda self: self.__getitem__("PKTSTOP"),
-        fset=lambda self, value: self.set("PKTSTOP", value),
+        fset=lambda self, value: self.__setitem__("PKTSTOP", value),
         doc="""The last packet-index from which to pass through the pipeline.
         """
     )
 
     packet_index_per_block: int = property(
         fget=lambda self: self.__getitem__("PIPERBLK"),
-        fset=lambda self, value: self.set("PIPERBLK", value),
+        fset=lambda self, value: self.__setitem__("PIPERBLK", value),
         doc="""The packet-index span of a block.
         """
     )

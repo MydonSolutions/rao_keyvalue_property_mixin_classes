@@ -8,7 +8,6 @@ The expected methods externalised to the adjacent mixins of the final implementa
   - the second positional argument is the fallback value in lieu of a value for the key.
 - `self.__getitem__(key)`
   - raises KeyError if the key is not populated 
-- `self.set(key, value)`
 - `self.__setitem__(key, value)`
 
 ## Acronym choice
