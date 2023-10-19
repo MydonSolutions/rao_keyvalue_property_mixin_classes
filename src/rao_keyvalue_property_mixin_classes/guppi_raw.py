@@ -1,5 +1,10 @@
 from typing import Tuple
 
+def factor_division(dividend, divisor):
+    if dividend % divisor != 0:
+        raise ValueError(f"Cannot cleanly divide {dividend} by non-factor {divisor}.")
+    return dividend // divisor
+
 
 class GuppiRawProperties:
     """
@@ -17,12 +22,15 @@ class GuppiRawProperties:
     blockshape: Tuple[int, int, int, int] = property(
         fget=lambda self: (
             self.nof_antennas,
-            self.observed_nof_channels//self.nof_antennas,
-            self.blocksize*8//(
-                self.observed_nof_channels
-                * self.nof_polarizations
-                * 2
-                * self.nof_bits
+            factor_division(self.observed_nof_channels, self.nof_antennas),
+            factor_division(
+                self.blocksize*8,
+                (
+                    self.observed_nof_channels
+                    * self.nof_polarizations
+                    * 2
+                    * self.nof_bits
+                )
             ),
             self.nof_polarizations
         ),
