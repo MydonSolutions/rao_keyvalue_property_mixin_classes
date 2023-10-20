@@ -48,7 +48,7 @@ class HpdaqAtaProperties(HpdaqProperties):
     channel_bandwidth: float = property(
         fget=lambda self: self.get(
             "CHAN_BW",
-            1.0/self.channel_timespan
+            1.0/self.spectra_timespan
         ),
         fset=lambda self, value: self.__setitem__("CHAN_BW", value),
         doc="""Bandwidth of a channel.

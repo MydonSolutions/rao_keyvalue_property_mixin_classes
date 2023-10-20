@@ -49,13 +49,17 @@ class HpdaqProperties(GuppiRawProperties):
         fget=lambda self: self.__getitem__("PKTSTART"),
         fset=lambda self, value: self.__setitem__("PKTSTART", value),
         doc="""The first packet-index from which to pass through the pipeline.
+        Effectively determines when the lower-time-boundary of the data to
+        process.
         """
     )
 
     stop_packet_index: int = property(
         fget=lambda self: self.__getitem__("PKTSTOP"),
         fset=lambda self, value: self.__setitem__("PKTSTOP", value),
-        doc="""The last packet-index from which to pass through the pipeline.
+        doc="""The last packet-index until which to pass through the pipeline.
+        Effectively determines when the upper-time-boundary of the data to
+        process.
         """
     )
 
