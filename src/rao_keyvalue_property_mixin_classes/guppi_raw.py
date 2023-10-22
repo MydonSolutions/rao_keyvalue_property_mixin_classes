@@ -67,10 +67,7 @@ class GuppiRawProperties:
     blockshape: Tuple[int, int, int, int] = property(
         fget=lambda self: (
             self.nof_antennas,
-            GuppiRawProperties.factor_division(
-                self.observed_nof_channels,
-                self.nof_antennas
-            ),
+            self.observed_nof_antenna_channels,
             self.nof_spectra_per_block,
             self.nof_polarizations
         ),
@@ -96,6 +93,17 @@ class GuppiRawProperties:
         fset=lambda self, value: self.__setitem__("OBSNCHAN", value),
         doc="""Number of channels in the block-data.
         Critical to rawspec processing a file.
+        """
+    )
+
+    observed_nof_antenna_channels: int = property(
+        fget=lambda self: GuppiRawProperties.factor_division(
+            self.observed_nof_channels,
+            self.nof_antennas
+        ),
+        fset=None,
+        doc="""Number of channels per antenna in the block-data.
+        A shorthand proxy for `observed_nof_channels//nof_antennas`.
         """
     )
 
@@ -128,6 +136,18 @@ class GuppiRawProperties:
         fset=lambda self, value: self.__setitem__("OBSBW", value),
         doc="""The bandwidth covered by the block-data.
         Critical to rawspec processing a file.
+        """
+    )
+
+    channel_bandwidth: float = property(
+        fget=lambda self: (
+            self.observed_bandwidth/self.observed_nof_antenna_channels
+        ),
+        fset=lambda self, value: self.__class__.observed_bandwidth.fset(
+            self,
+            self.observed_nof_antenna_channels*value
+        ),
+        doc="""The bandwidth covered by each channel in the block-data.
         """
     )
 

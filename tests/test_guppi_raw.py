@@ -23,6 +23,19 @@ class TestGuppiRaw(unittest.TestCase):
         assert blockshape[2] == 1024
         assert blockshape[3] == grh["NPOL"]
 
+    def test_ant_chan_proxies(self):
+        grh = GuppiRawHeader(
+            NANTS=16,
+            OBSNCHAN=16*32,
+            OBSBW=32
+        )
+
+        assert grh.channel_bandwidth == 1
+        grh.channel_bandwidth *= 2
+        assert grh.channel_bandwidth == 2
+        assert grh.observed_bandwidth == 64
+
+
     def test_ra_dec(self):
         ra = 8.34031194444
         dec = -3.1415926535
