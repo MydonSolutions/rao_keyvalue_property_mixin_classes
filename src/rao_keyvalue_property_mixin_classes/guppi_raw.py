@@ -283,7 +283,7 @@ class GuppiRawProperties:
                 (
                     (self.packet_index + packet_index_offset)
                     / self.nof_packet_indices_per_block
-                ) * self.self.nof_spectra_per_block
+                ) * self.nof_spectra_per_block
                 + spectra_index_offset
             ) * self.spectra_timespan
         ),
