@@ -1,5 +1,9 @@
 from typing import Tuple
+from enum import Enum
 
+class GuppiRawDatatype(str, Enum):
+    integer = "INTEGER"
+    floating_point = "FLOAT"
 
 class GuppiRawProperties:
     """
@@ -120,6 +124,14 @@ class GuppiRawProperties:
         fset=lambda self, value: self.__setitem__("NBITS", value),
         doc="""Number of bits per sample in the block-data.
         Critical to rawspec processing a file, but has a default.
+        """
+    )
+
+    sample_datatype: str = property(
+        fget=lambda self: GuppiRawDatatype.integer,
+        fset=None,
+        doc="""The binary encoding of the samples in the block-data.
+        Floating-point sample data is a niche overload of the GUPPI format.
         """
     )
 

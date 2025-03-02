@@ -3,11 +3,7 @@ from enum import Enum
 import os
 
 from .hpdaq import HpdaqProperties
-
-
-class HpdaqAtaDatatype(str, Enum):
-    integer = "INTEGER"
-    floating_point = "FLOAT"
+from .guppi_raw import GuppiRawDatatype
 
 
 class HpdaqAtaProperties(HpdaqProperties):
@@ -56,8 +52,12 @@ class HpdaqAtaProperties(HpdaqProperties):
     )
 
     sample_datatype: str = property(
-        fget=lambda self: HpdaqAtaDatatype(self.get("DATATYPE")),
-        fset=None
+        fget=lambda self: GuppiRawDatatype(self.get("DATATYPE")),
+        fset=None,
+        doc="""The binary encoding of the samples in the block-data.
+        Beamformed data is stored in a floating-point GUPPI file as an
+        interim solution.
+        """
     )
 
     observation_id: str = property(
