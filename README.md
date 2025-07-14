@@ -1,3 +1,9 @@
+# Property Mixin Classes
+
+Provides telescope-specific property mixins to access data in a standardised way.
+
+Further provides GuppiRawHeader classes, both a base class and those for implemented telescopes.
+
 # Conventions
 
 ## Expected External Mixin Methods

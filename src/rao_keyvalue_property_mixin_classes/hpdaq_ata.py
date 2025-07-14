@@ -100,15 +100,15 @@ class HpdaqAtaProperties(HpdaqProperties):
         # manage limited entry length
         nants = kvp.nof_antennas or 1
 
-        antname_list = []
+        antval_list = []
         key_enum = 0
 
-        while len(antname_list) < nants:
-            antnames = kvp.get(f"{key_prefix}{key_enum:02d}")
+        while len(antval_list) < nants:
+            antvals = kvp.__getitem__(f"{key_prefix}{key_enum:02d}")
             key_enum += 1
-            antname_list += antnames.split(separator)
+            antval_list += antvals.split(separator)
 
-        return antname_list[0:kvp.nof_antennas]
+        return antval_list[0:kvp.nof_antennas]
 
     @staticmethod
     def _generate_antennaCsvEntries(

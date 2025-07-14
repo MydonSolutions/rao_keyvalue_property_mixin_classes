@@ -1,10 +1,7 @@
 import unittest
 
 from rao_keyvalue_property_mixin_classes.guppi_raw import GuppiRawProperties
-
-
-class GuppiRawHeader(dict, GuppiRawProperties):
-    pass
+from rao_keyvalue_property_mixin_classes.guppi_raw_header import GuppiRawHeader
 
 
 class TestGuppiRaw(unittest.TestCase):

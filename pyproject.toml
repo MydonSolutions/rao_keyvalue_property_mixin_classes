@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rao_keyvalue_property_mixin_classes"
-version = "0.5.4"
+version = "0.6.0"
 description = "Basic classes with properties reflecting how different Radio-Astronomy Observatories store common keyed-value metadata."
 classifiers = [
     "Programming Language :: Python :: 3",
