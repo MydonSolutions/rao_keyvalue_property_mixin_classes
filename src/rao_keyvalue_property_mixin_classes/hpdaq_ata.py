@@ -52,7 +52,7 @@ class HpdaqAtaProperties(HpdaqProperties):
     )
 
     sample_datatype: str = property(
-        fget=lambda self: GuppiRawDatatype(self.get("DATATYPE")),
+        fget=lambda self: GuppiRawDatatype(self.get("DATATYPE", GuppiRawDatatype.integer.value)),
         fset=None,
         doc="""The binary encoding of the samples in the block-data.
         Beamformed data is stored in a floating-point GUPPI file as an
